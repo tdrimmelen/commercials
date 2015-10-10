@@ -74,6 +74,8 @@ namespace Commercials
 
         public void Load(int width, int height)
         {
+            this.Height = height;
+            this.Width = width;
  	        
         }
 

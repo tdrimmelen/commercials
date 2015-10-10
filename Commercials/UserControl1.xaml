@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="1024" d:DesignWidth="1024">
     <Grid>
-        <Image x:Name="Image" HorizontalAlignment="Left" Height="1024" VerticalAlignment="Top" Width="1024" Source="C:\Visual Studio Projects\Commercials\Commercials\bin\Debug\microsoft.png" Visibility="Hidden"/>
+        <Image x:Name="Image" HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto" Source="c:\" Visibility="Hidden"/>
 
     </Grid>
 </UserControl>
