@@ -33,7 +33,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,7 +53,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="JSONConfig.cs" />
     <Compile Include="Scheduler.cs" />
+    <Compile Include="Timeline.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -74,6 +80,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="commercials.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

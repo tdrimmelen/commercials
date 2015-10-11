@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using vMixInterop;
+using System.Reflection;
 
 namespace Commercials
 {
@@ -25,15 +26,24 @@ namespace Commercials
         {
             InitializeComponent();
 
-            theScheduler = new Scheduler(this.Dispatcher, Update);
+            try
+            {
+                string myConfigFileName = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\commercials.config";
+                Configuration myConfig = new Configuration(myConfigFileName);
 
-            theScheduler.AddEvent(Scheduler.EventType.Show, new TimeSpan(0, 0, 5), @"C:\Visual Studio Projects\Commercials\Commercials\bin\Debug\quoratio.PNG");
-            theScheduler.AddEvent(Scheduler.EventType.Hide, new TimeSpan(0, 0, 15), @"");
-            theScheduler.AddEvent(Scheduler.EventType.Show, new TimeSpan(0, 0, 20), @"C:\Visual Studio Projects\Commercials\Commercials\bin\Debug\kales.jpg");
-            theScheduler.AddEvent(Scheduler.EventType.Hide, new TimeSpan(0, 0, 30), @"");
-            theScheduler.AddEvent(Scheduler.EventType.Show, new TimeSpan(0, 0, 35), @"C:\Visual Studio Projects\Commercials\Commercials\bin\Debug\qfc.PNG");
-            theScheduler.AddEvent(Scheduler.EventType.Hide, new TimeSpan(0, 0, 45), @"");
-        }
+                string myTimelineFilename = myConfig["TimelineFilename"];
+
+                theScheduler = new Scheduler(this.Dispatcher, Update);
+                JSONConfig.ReadFromFile(myTimelineFilename, theScheduler);
+
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                throw e;
+            }
+
+ }
 
         private void Update(string aCommercial)
         {
