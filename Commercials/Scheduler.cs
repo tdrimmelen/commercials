@@ -72,6 +72,11 @@ namespace Commercials
             }
         }
 
+        public string GetFirstSlotCommercial()
+        {
+            return theQueue.First().commercial;
+        }
+
         private void Run(Object source, ElapsedEventArgs ea)
         {
             lock(theLock)

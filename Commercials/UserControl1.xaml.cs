@@ -31,7 +31,8 @@ namespace Commercials
                 string myConfigFileName = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\commercials.config";
                 Configuration myConfig = new Configuration(myConfigFileName);
 
-                string myTimelineFilename = myConfig["TimelineFilename"];
+                string myTempFileName = myConfig["TimelineFilename"];
+                string myTimelineFilename = Environment.ExpandEnvironmentVariables(myTempFileName);
 
                 theScheduler = new Scheduler(this.Dispatcher, Update);
                 JSONConfig.ReadFromFile(myTimelineFilename, theScheduler);
@@ -43,7 +44,17 @@ namespace Commercials
                 throw e;
             }
 
- }
+            // Initialise source
+            BitmapImage mySource = new BitmapImage();
+
+            mySource.BeginInit();
+            mySource.UriSource = new Uri(theScheduler.GetFirstSlotCommercial());
+            mySource.EndInit();
+
+            Image.Source = mySource;
+            Image.Visibility = System.Windows.Visibility.Hidden; 
+
+        }
 
         private void Update(string aCommercial)
         {
@@ -86,7 +97,7 @@ namespace Commercials
         {
             this.Height = height;
             this.Width = width;
- 	        
+
         }
 
         public void Pause()

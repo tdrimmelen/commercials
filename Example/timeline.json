@@ -1,0 +1,20 @@
+{
+  "name": "Timeline set 1",
+  "defaultDuration": 10,
+  "slots": [
+    {
+      "commercial": "qfc.png",
+      "start": "0:10"
+
+    },
+    {
+      "commercial": "quoratio.png",
+      "start": "0:25",
+      "duration" : 5
+    },
+    {
+      "commercial": "kales.jpg",
+      "start": "0:33"
+    }
+  ]
+}
