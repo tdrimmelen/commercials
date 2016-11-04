@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using vMixInterop;
+// using vMixInterop;
 using System.Reflection;
 
 namespace Commercials
@@ -19,7 +19,10 @@ namespace Commercials
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl, vMixWPFUserControl
+    /// 
+
+    // vMixUserControl disabled as it gives extra CPU load - No idea of root cause
+    public partial class UserControl1 : UserControl // , vMixWPFUserControl
     {
         Scheduler theScheduler;
         public UserControl1()
@@ -52,7 +55,10 @@ namespace Commercials
             mySource.EndInit();
 
             Image.Source = mySource;
-            Image.Visibility = System.Windows.Visibility.Hidden; 
+            Image.Visibility = System.Windows.Visibility.Hidden;
+
+            // Start the scheduler
+            theScheduler.Start();
 
         }
 
